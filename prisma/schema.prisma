@@ -21,12 +21,14 @@ model Quiz {
   author      User       @relation(fields: [authorId], references: [id])
   authorId    String
   questions   Question[]
+  privacy     String     @default("PUBLIC")
 
   createdAt DateTime @default(now())
 }
 
 model Question {
   id          String @id @default(uuid())
+  index       Int
   content     String
   description String
   quiz        Quiz   @relation(fields: [quizId], references: [id])
